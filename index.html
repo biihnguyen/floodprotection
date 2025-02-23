@@ -6,114 +6,14 @@
     <meta name="description" content="SHIELD Flood Protection System">
     <title>SHIELD Flood Protection System</title>
     <style>
-      * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Cấu hình chung */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
-    margin: 0;
-    padding: 0;
-}
-
-/* Header */
-header {
-    background-color: #3c8dbc;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 24px;
-}
-
-/* Thanh điều hướng */
-nav {
-    background-color: #2b6a92;
-    padding: 10px;
-    text-align: center;
-}
-
-nav a {
-    color: white;
-    margin: 0 10px;
-    text-decoration: none;
-    padding: 8px 16px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-nav a:hover {
-    background-color: #3c8dbc;
-    border-radius: 4px;
-}
-
-/* Nội dung chính */
-main {
-    padding: 20px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-section {
-    display: none;
-    background-color: white;
-    margin-bottom: 20px;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#monitoring {
-    display: block;
-}
-
-/* Footer */
-footer {
-    background-color: #3c8dbc;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
-}
-
-/* Phần giám sát (monitoring) */
-.monitoring {
-    background-color: #e7f3fe;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-/* Bố cục biểu đồ */
-.chart-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.chart-box {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
-}
-
-/* La bàn */
-#compass {
-    width: 200px;
-    height: 200px;
+       #compass {
+    width: 250px;
+    height: 250px;
     border: 2px solid #007BFF;
     border-radius: 50%;
     position: relative;
-    margin: 20px auto;
+    left: 750px;  /* Dịch sang phải */
+    top: 160px;   /* Dịch xuống dưới */
 }
 
 #needle {
@@ -150,47 +50,63 @@ footer {
 .east { right: 5%; top: 50%; transform: translateY(-50%); }
 .west { left: 5%; top: 50%; transform: translateY(-50%); }
 
-/* Hiển thị cảnh báo */
-#floodStatus {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-/* Thiết lập responsive cho điện thoại */
-@media (max-width: 768px) {
-    header {
-        font-size: 20px;
-        padding: 15px;
-    }
-
-    nav a {
-        font-size: 14px;
-        padding: 6px 12px;
-    }
-
-    main {
-        padding: 10px;
-    }
-
-    .chart-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .chart-box {
-        width: 90%;
-    }
-
-    #compass {
-        width: 150px;
-        height: 150px;
-    }
-
-    #needle {
-        border-bottom: 45px solid red;
-    }
-}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #3c8dbc;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        nav {
+            background-color: #2b6a92;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        nav a:hover {
+            background-color: #3c8dbc;
+            border-radius: 4px;
+        }
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        section {
+            display: none;
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #monitoring {
+            display: block;
+        }
+        footer {
+            background-color: #3c8dbc;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+        .monitoring {
+            background-color: #e7f3fe;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -213,15 +129,15 @@ footer {
       const app = initializeApp(firebaseConfig);
       const database = getDatabase(app);
 
-     const L3_directionRef = ref(database, 'L3_direction');
-     const L3_accelerationRef = ref(database, 'L3_acceleration');
-     const L3_flowspeedRef = ref(database, 'L3_flowspeed');
-     const L3_pressureRef = ref(database, 'L3_pressure');
-     const L3_waterlevelRef = ref(database, 'L3_waterlevel');
+     const L2_directionRef = ref(database, 'L2_direction');
+     const L2_accelerationRef = ref(database, 'L2_acceleration');
+     const L2_flowspeedRef = ref(database, 'L2_flowspeed');
+     const L2_pressureRef = ref(database, 'L2_pressure');
+     const L2_waterlevelRef = ref(database, 'L2_waterlevel');
 
-     const L3_soilHumidRef = ref(database, 'L3_soilhumid');
-     const L3_temperatureRef = ref(database, 'L3_temperature');
-     const L3_rainStateRef = ref(database, 'L3_rainstate');
+     const L2_soilHumidRef = ref(database, 'L2_soilhumid');
+     const L2_temperatureRef = ref(database, 'L2_temperature');
+     const L2_rainStateRef = ref(database, 'L2_rainstate');
 
 
         function updateCompass(direction) {
@@ -229,7 +145,7 @@ footer {
     document.getElementById('needle').style.transform = `translate(-50%, -100%) rotate(${angle}deg)`;
   }
 
-        onValue(L3_directionRef, (snapshot) => {
+        onValue(L2_directionRef, (snapshot) => {
     const direction = snapshot.val();
     if (direction !== null) {
       console.log("Compass Direction from Firebase:", direction);
@@ -237,21 +153,21 @@ footer {
     }
   });
 
-  onValue(L3_temperatureRef, (snapshot) => {
+  onValue(L2_temperatureRef, (snapshot) => {
     const temperature = snapshot.val();
     if (temperature !== null) {
         document.getElementById('temperatureValue').innerText = `🌡️ Temperature: ${temperature}°C`;
     }
 });
 
-onValue(L3_soilHumidRef, (snapshot) => {
+onValue(L2_soilHumidRef, (snapshot) => {
     const soilHumid = snapshot.val();
     if (soilHumid !== null) {
         document.getElementById('soilHumidValue').innerText = `🌱 Humidity: ${soilHumid}%`;
     }
 });
 
-onValue(L3_rainStateRef, (snapshot) => {
+onValue(L2_rainStateRef, (snapshot) => {
     const rainState = snapshot.val();
     if (rainState !== null) {
         document.getElementById('rainStateValue').innerText = `🌧️ Rain: ${rainState}%`;
@@ -345,7 +261,7 @@ onValue(L3_rainStateRef, (snapshot) => {
 // 🔥 Thêm các sự kiện listener mới ngay sau đây
 // Lắng nghe dữ liệu từ Firebase (Acceleration)
 
-onValue(L3_accelerationRef, (snapshot) => {
+onValue(L2_accelerationRef, (snapshot) => {
     const data = snapshot.val();
     if (!data) return;  
 
@@ -362,7 +278,7 @@ onValue(L3_accelerationRef, (snapshot) => {
 });
 
 // Lắng nghe dữ liệu từ Firebase (Flow Speed)
-onValue(L3_flowspeedRef, (snapshot) => {
+onValue(L2_flowspeedRef, (snapshot) => {
     const data = snapshot.val();
     if (!data) return;  
 
@@ -379,7 +295,7 @@ onValue(L3_flowspeedRef, (snapshot) => {
 });
 
 // Lắng nghe dữ liệu từ Firebase (Pressure)
-onValue(L3_pressureRef, (snapshot) => {
+onValue(L2_pressureRef, (snapshot) => {
     const data = snapshot.val();
     if (!data) return;  
 
@@ -395,7 +311,7 @@ onValue(L3_pressureRef, (snapshot) => {
     }
 });
 
-onValue(L3_waterlevelRef, (snapshot) => {
+onValue(L2_waterlevelRef, (snapshot) => {
     const sensorValue = parseFloat(snapshot.val()); // Lấy giá trị từ waterlevel
     if (isNaN(sensorValue)) return;
 
